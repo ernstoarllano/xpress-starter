@@ -1,9 +1,13 @@
 import React from "react"
 import styled from "styled-components"
-import { StaticQuery, graphql, Link } from "gatsby"
 import Logo from "../Logo/Logo"
+import HeaderNav from "../Navigation/HeaderNav"
+import HeaderActions from "./HeaderActions"
 
-const HeaderContainer = styled.header``
+const HeaderContainer = styled.header`
+  padding-top: 10px;
+  padding-bottom: 10px;
+`
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -21,24 +25,13 @@ const HeaderWrapper = styled.div`
   }
 `
 
-const LogoContainer = styled.div`
-  width: 200px;
-
-  img {
-    object-fit: contain;
-  }
-`
-
 const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
         <Logo />
-        <nav>
-          <ul>
-            <li>Home</li>
-          </ul>
-        </nav>
+        <HeaderNav />
+        <HeaderActions />
       </HeaderWrapper>
     </HeaderContainer>
   )

@@ -1,9 +1,20 @@
 import React from "react"
 import styled from "styled-components"
-import { StaticQuery, graphql, Link } from "gatsby"
 import Logo from "../Logo/Logo"
+import FooterNav from "../Navigation/FooterNav"
+import FooterAddress from "./FooterAddress"
+import Button from "../Button/Button"
 
-const FooterContainer = styled.footer``
+const FooterContainer = styled.footer`
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: ${({ theme }) => theme.colors.grey};
+
+  @media (min-width: 1024px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+`
 
 const FooterWrapper = styled.div`
   display: flex;
@@ -16,26 +27,27 @@ const FooterWrapper = styled.div`
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
-`
 
-const LogoContainer = styled.div`
-  width: 200px;
-
-  img {
-    object-fit: contain;
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    align-items: flex-start;
   }
 `
+
+const FooterActions = styled.div``
 
 const Footer = () => {
   return (
     <FooterContainer>
       <FooterWrapper>
         <Logo />
-        <nav>
-          <ul>
-            <li>Home</li>
-          </ul>
-        </nav>
+        <FooterNav />
+        <FooterAddress />
+        <FooterActions>
+          <Button url="#" label="Reserve Now" />
+        </FooterActions>
       </FooterWrapper>
     </FooterContainer>
   )

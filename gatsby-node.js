@@ -66,8 +66,6 @@ exports.createResolvers = async ({
             url = source.guid
           }
 
-          console.log(url)
-
           return await createRemoteFileNode({
             url,
             store,

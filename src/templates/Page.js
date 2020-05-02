@@ -11,6 +11,7 @@ const Page = ({
   return (
     <>
       <Header />
+      <h1>{page.title}</h1>
       <Footer />
     </>
   )

@@ -4,7 +4,7 @@ export const SiteContext = createContext()
 
 const SiteProvider = ({ children }) => {
   const [state, setState] = useState({
-    mobileMenu: false,
+    mobileDrawer: false,
   })
 
   const toggleMobileMenu = open => {
