@@ -1,6 +1,7 @@
 import React from "react"
 import Header from "../components/Header/Header"
-import Hero from "../components/Hero/Hero"
+import HeroImage from "../components/Hero/HeroImage"
+import PortalIcons from "../components/Portal/PortalIcons"
 import Footer from "../components/Footer/Footer"
 import { graphql } from "gatsby"
 
@@ -9,14 +10,22 @@ const Index = ({
     wpgraphql: { page },
   },
 }) => {
-  const {
-    heroMeta: { heroType, heroImage },
-  } = page
+  const { frontendComponents, heroMeta } = page
+  const { componentType, iconPortals } = frontendComponents || {}
+  const { heroType, heroImage } = heroMeta || {}
 
   return (
     <>
       <Header />
-      {heroType && <Hero type={heroType} />}
+      {heroType && heroType === "image" && heroImage && (
+        <HeroImage
+          mobile={heroImage.imageFile.childImageSharp.mobile.src}
+          desktop={heroImage.imageFile.childImageSharp.desktop.src}
+        />
+      )}
+      {componentType && componentType === "icon-portals" && (
+        <PortalIcons portals={iconPortals} />
+      )}
       <Footer />
     </>
   )
@@ -27,6 +36,18 @@ export const query = graphql`
     wpgraphql {
       page(id: "cGFnZTozMA==") {
         content
+        frontendComponents {
+          componentType
+          iconPortals {
+            iconPortalIcon {
+              guid
+              imageFile {
+                publicURL
+              }
+            }
+            iconPortalContent
+          }
+        }
         heroMeta {
           heroType
           heroImage {
